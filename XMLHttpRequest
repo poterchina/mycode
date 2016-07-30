@@ -1,0 +1,32 @@
+// 获取XMLHttpRequest对象
+function getXMLHttpRequest() {
+	var xmlhttp;
+	// code for IE7+, Firefox, Chrome, Opera, Safari
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}
+	// code for IE6, IE5
+	else {
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	return xmlhttp;
+}
+
+function fun() {
+	// 1. 获取XMLHttpRequest对象
+	var xmlhttp = getXMLHttpRequest();
+	// 2. 监听服务器返回状态
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			// 获取后台返回的结果
+			var result = xmlhttp.responseText;
+			// 根据结果进行相应的处理
+		}
+	}
+	// 3. 打开连接
+	xmlhttp.open("POST", "${pageContext.request.contextPath}/...", true);
+	// 使用表单的方式 POST 数据
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	// 4. 发送请求
+	xmlhttp.send();
+}
